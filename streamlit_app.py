@@ -28,35 +28,46 @@ with st.sidebar:
         st.session_state.openai_api_key = openai_api_key
         openai.api_key = st.session_state.openai_api_key
         st.success("Your OpenAI API key was saved successfully!")
-# Function to generate a name using OpenAI API
-def generate_name(gender, characteristic, first_letter, language, api_key):
-    # Set OpenAI API key
 
-    # Call OpenAI API to generate a name based on the provided parameters
+#user_api_key = st.sidebar.text_input("OpenAI API key", type="password")
+#client = openai.OpenAI(api_key=user_api_key)
+
+def generate_name_recommendation(gender, characteristics, first_letter, language):
+    # Customize the prompt based on your requirements
+    prompt = f"Generate five {gender} names that means {characteristics} that starts with {first_letter} in {language} and tell me the origin of each name."
+
+    # Call OpenAI API for recommendation
     response = openai.chat.completions.create(
-        engine="text-davinci-002",  # Use the appropriate engine
-        prompt=f"Generate a {gender.lower()} name that is {characteristic.lower()} and starts with {first_letter.lower()} in {language.lower()}",
-        max_tokens=50  # Adjust as needed
+        model="gpt-3.5-turbo",
+        temperature=0.7,
+        top_p=0.7,
+        max_tokens=450,
+        messages=[
+            {"role": "system", "content": "You are a flowers recommendation bot. You will help users find the best flowers for their important person."},
+            {"role": "user", "content": f"You will help users find the best flowers and make notes from the context:{prompt}."},
+        ]
     )
+    
+    return response.choices[0].message.content
 
-    generated_name = response.choices[0].text.strip()
-    return generated_name
+#st.title("🌼Flower For Your Important Person🌼")
+st.markdown("<h2 style = 'font-size: 1.8rem'>Name Your Child Import</h2>",unsafe_allow_html=True)
 
+# Uncomment the following lines to enable the API key input form
 
-st.title("Name Generator App")
 
 # User input
-gender = st.selectbox("Select gender", ["Male", "Female"])
-characteristic = st.text_input("Enter a characteristic (e.g., Brave, Intelligent)")
-first_letter = st.text_input("Enter the first letter of the name")
-language = st.selectbox("Select language", ["English", "Italian", "Spanish"])
+gender = st.text_input("Gender:")
+characteristics = st.text_input("Characteristics:")
+first_letter = st.text_input("First Letter Of The Name:")
+language = st.text_input("The Language Of Origin Of The Name:")
 
-# Slider for API key
-api_key = st.text_input("Enter your OpenAI API key", type="password")
-
-# Generate and display the name
+# Generate recommendation
 if st.button("Generate Name"):
-    generated_name = generate_name(gender, characteristic, first_letter, language, api_key)
-    st.success(f"The generated name is: {generated_name}")
-
-
+    if gender and characteristics and first_letter and language:
+        recommendation = generate_name_recommendation(
+            gender, characteristics, first_letter, language
+        )
+        st.success(f"Recommended Name: {recommendation}")
+    else:
+        st.warning("Please fill in all fields.")
