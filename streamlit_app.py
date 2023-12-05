@@ -65,6 +65,13 @@ if st.button("Generate Name"):
         recommendation = generate_name_recommendation(
             gender, characteristics, first_letter, language
         )
+        data = {
+    "Name": [],
+    "Origin": [],
+    "Meaning": []
+}
+        df = pd.DataFrame(data)
+
         st.success(f"Recommended Name: {recommendation}")
     else:
         st.warning("Please fill in all fields.")
