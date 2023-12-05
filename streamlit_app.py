@@ -56,9 +56,9 @@ st.markdown("<h2 style = 'font-size: 1.8rem'>Name Your Child Import</h2>",unsafe
 
 # User input
 gender = st.selectbox("Select gender", ["Male", "Female"])
-characteristics = st.text_input("Characteristics:")
-first_letter = st.text_input("First Letter Of The Name:")
-language = st.text_input("The Language Of Origin Of The Name:")
+characteristic = st.text_input("Enter a characteristic (e.g., Brave, Intelligent)")
+first_letter = st.text_input("Enter the first letter of the name")
+language = st.selectbox("Select language", ["English", "Italian", "Spanish"])
 
 # Generate recommendation
 if st.button("Generate Name"):
