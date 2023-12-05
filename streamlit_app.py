@@ -48,8 +48,8 @@ def generate_name_recommendation(gender, characteristics, first_letter, language
     
     return response.choices[0].message.content
 
-#st.title("🌼Flower For Your Important Person🌼")
-st.markdown("<h2 style = 'font-size: 1.8rem'>Name Your Child Import</h2>",unsafe_allow_html=True)
+st.title("NAME YOUR CHILD")
+st.markdown("<h2 style = 'font-size: 1.8rem'>Name Your Child</h2>",unsafe_allow_html=True)
 
 # Uncomment the following lines to enable the API key input form
 
