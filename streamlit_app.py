@@ -1,5 +1,5 @@
-import openai
 import streamlit as st
+import openai
 # Uncomment the following lines to enable the API key input form
 # Initialize
 st.cache_data.clear()
@@ -7,7 +7,7 @@ st.cache_data.clear()
 if "openai_api_key" not in st.session_state:
     st.session_state.openai_api_key = ""
 
-openai.api_key = st.session_state.openai_api_key
+#openai.api_key = st.session_state.openai_api_key
 
 if "text_error" not in st.session_state:
     st.session_state.text_error = None
@@ -50,7 +50,7 @@ def generate_name_recommendation(gender, characteristics, first_letter, language
     return response.choices[0].message.content
 
 #st.title("🌼Flower For Your Important Person🌼")
-st.markdown("<h2 style = 'font-size: 1.8rem'>🌼Flower For Your Important Person🌼</h2>",unsafe_allow_html=True)
+st.markdown("<h2 style = 'font-size: 1.8rem'>Name Your Child Import</h2>",unsafe_allow_html=True)
 
 # Uncomment the following lines to enable the API key input form
 
