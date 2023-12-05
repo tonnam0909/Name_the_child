@@ -28,25 +28,45 @@ with st.sidebar:
         openai.api_key = st.session_state.openai_api_key
         st.success("Your OpenAI API key was saved successfully!")
 
-# Function to generate a fictional name
-def generate_name(gender, characteristic, first_letter, language):
-    # Replace this with the actual OpenAI API call once available
-    # For now, a fictional name is generated based on the provided parameters
-    name = f"{first_letter.upper()}{characteristic.capitalize()}"
+#user_api_key = st.sidebar.text_input("OpenAI API key", type="password")
+#client = openai.OpenAI(api_key=user_api_key)
 
-    return name
+def generate_flower_recommendation(occasion, recipient_name, favorite_color, relationship):
+    # Customize the prompt based on your requirements
+    prompt = f"Recommend me a flower that are suitable for {occasion} and {favorite_color} for {recipient_name} who is my {relationship}. and write 5 notes for me to tell {recipient_name} why I chose this flower for this {occasion}."
 
-# Streamlit app
-def main():
-    st.title("Name Generator App")
+    # Call OpenAI API for recommendation
+    response = openai.chat.completions.create(
+        model="gpt-3.5-turbo",
+        temperature=0.7,
+        top_p=0.7,
+        max_tokens=450,
+        messages=[
+            {"role": "system", "content": "You are a flowers recommendation bot. You will help users find the best flowers for their important person."},
+            {"role": "user", "content": f"You will help users find the best flowers and make notes from the context:{prompt}."},
+        ]
+    )
+    
+    return response.choices[0].message.content
 
-    # User input
-    gender = st.selectbox("Select gender", ["Male", "Female"])
-    characteristic = st.text_input("Enter a characteristic (e.g., Brave, Intelligent)")
-    first_letter = st.text_input("Enter the first letter of the name")
-    language = st.selectbox("Select language", ["English", "Italian", "Spanish"])
+#st.title("🌼Flower For Your Important Person🌼")
+st.markdown("<h2 style = 'font-size: 1.8rem'>🌼Flower For Your Important Person🌼</h2>",unsafe_allow_html=True)
 
-    # Generate and display the name
-    if st.button("Generate Name"):
-        generated_name = generate_name(gender, characteristic, first_letter, language)
-        st.success(f"The generated name is: {generated_name}")
+# Uncomment the following lines to enable the API key input form
+
+
+# User input
+occasion = st.text_input("Occasion:")
+recipient_name = st.text_input("Recipient's Name:")
+favorite_color = st.text_input("Recipient's Favorite Color:")
+relationship = st.text_input("Recipient's Relationship to you:")
+
+# Generate recommendation
+if st.button("Generate Recommendation"):
+    if occasion and recipient_name and favorite_color and relationship:
+        recommendation = generate_flower_recommendation(
+            occasion, recipient_name, favorite_color, relationship
+        )
+        st.success(f"Recommended Flower: {recommendation}")
+    else:
+        st.warning("Please fill in all fields.")
