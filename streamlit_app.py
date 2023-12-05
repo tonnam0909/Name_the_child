@@ -1,5 +1,5 @@
-import streamlit as st
 import openai
+import streamlit as st
 # Uncomment the following lines to enable the API key input form
 # Initialize
 st.cache_data.clear()
