@@ -1,6 +1,6 @@
 import streamlit as st
 import openai
-
+import pandas as pd
 st.cache_data.clear()
 
 if "openai_api_key" not in st.session_state:
@@ -69,3 +69,9 @@ if st.button("Generate Name"):
         st.success(f"Recommended Name: {recommendation}")
     else:
         st.warning("Please fill in all fields.")
+    if st.button("Generate Name"):
+        generated_name = generate_name_recommendation(gender, characteristics, first_letter, language,)
+
+        # Display the generated name in a table
+        df = pd.DataFrame({"Generated Name": [generated_name]})
+        st.table(df)
