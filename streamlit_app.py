@@ -1,5 +1,5 @@
 import streamlit as st
-import openai
+#import openai
 # Uncomment the following lines to enable the API key input form
 # Initialize
 st.cache_data.clear()
@@ -7,7 +7,7 @@ st.cache_data.clear()
 if "openai_api_key" not in st.session_state:
     st.session_state.openai_api_key = ""
 
-openai.api_key = st.session_state.openai_api_key
+#openai.api_key = st.session_state.openai_api_key
 
 if "text_error" not in st.session_state:
     st.session_state.text_error = None
