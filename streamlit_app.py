@@ -41,7 +41,7 @@ def generate_name_recommendation(gender, characteristics, first_letter, language
         top_p=0.7,
         max_tokens=450,
         messages=[
-            {"role": "system", "content": "Act as a name counselor. You will help users find the most suitable name for the user from the information given by the user. Put the name, origin, meaning in a pandas table. Don't say opening sentence and closing sentence."},
+            {"role": "system", "content": "Act as a name counselor. You will help users find the most suitable name for the user from the information given by the user. Put the name, origin, meaning in a pandas table."},
             {"role": "user", "content": f"You will help users find the best names that is the most suitable from the given information:{prompt}."},
         ]
     )
