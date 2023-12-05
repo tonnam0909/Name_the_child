@@ -48,8 +48,7 @@ def generate_name_recommendation(gender, characteristics, first_letter, language
     
     return response.choices[0].message.content
 
-st.title("NAME YOUR CHILD")
-st.markdown("<h2 style = 'font-size: 1.8rem'>Name Your Child</h2>",unsafe_allow_html=True)
+st.markdown("<div style='text-align: center;'><h2 style='font-size: 2rem;'>NAME YOUR CHILD!!!</h2></div>", unsafe_allow_html=True)
 
 # Uncomment the following lines to enable the API key input form
 
@@ -69,9 +68,3 @@ if st.button("Generate Name"):
         st.success(f"Recommended Name: {recommendation}")
     else:
         st.warning("Please fill in all fields.")
-    if st.button("Generate Name"):
-        generated_name = generate_name_recommendation(gender, characteristics, first_letter, language,)
-
-        # Display the generated name in a table
-        df = pd.DataFrame({"Generated Name": [generated_name]})
-        st.table(df)
