@@ -31,9 +31,9 @@ with st.sidebar:
 #user_api_key = st.sidebar.text_input("OpenAI API key", type="password")
 #client = openai.OpenAI(api_key=user_api_key)
 
-def generate_name_recommendation(gender, characteristics, first_letter, language):
+def generate_flower_recommendation(occasion, recipient_name, favorite_color, relationship):
     # Customize the prompt based on your requirements
-    prompt = f"Generate five {gender} names that means {characteristics} that starts with {first_letter} in {language} and tell me the origin of each name."
+    prompt = f"Recommend me a flower that are suitable for {occasion} and {favorite_color} for {recipient_name} who is my {relationship}. and write 5 notes for me to tell {recipient_name} why I chose this flower for this {occasion}."
 
     # Call OpenAI API for recommendation
     response = openai.chat.completions.create(
@@ -50,23 +50,23 @@ def generate_name_recommendation(gender, characteristics, first_letter, language
     return response.choices[0].message.content
 
 #st.title("🌼Flower For Your Important Person🌼")
-st.markdown("<h2 style = 'font-size: 1.8rem'>Name Your Child Import</h2>",unsafe_allow_html=True)
+st.markdown("<h2 style = 'font-size: 1.8rem'>🌼Flower For Your Important Person🌼</h2>",unsafe_allow_html=True)
 
 # Uncomment the following lines to enable the API key input form
 
 
 # User input
-gender = st.text_input("Gender:")
-characteristics = st.text_input("Characteristics:")
-first_letter = st.text_input("First Letter Of The Name:")
-language = st.text_input("The Language Of Origin Of The Name:")
+occasion = st.text_input("Occasion:")
+recipient_name = st.text_input("Recipient's Name:")
+favorite_color = st.text_input("Recipient's Favorite Color:")
+relationship = st.text_input("Recipient's Relationship to you:")
 
 # Generate recommendation
-if st.button("Generate Name"):
-    if gender and characteristics and first_letter and language:
-        recommendation = generate_name_recommendation(
-            gender, characteristics, first_letter, language
+if st.button("Generate Recommendation"):
+    if occasion and recipient_name and favorite_color and relationship:
+        recommendation = generate_flower_recommendation(
+            occasion, recipient_name, favorite_color, relationship
         )
-        st.success(f"Recommended Name: {recommendation}")
+        st.success(f"Recommended Flower: {recommendation}")
     else:
         st.warning("Please fill in all fields.")
