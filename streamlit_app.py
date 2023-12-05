@@ -1,13 +1,39 @@
-import streamlit as st
-import openai  # Make sure to install the 'openai' library using: pip install openai
 
+import streamlit as st
+import openai
+# Uncomment the following lines to enable the API key input form
+# Initialize
+st.cache_data.clear()
+
+if "openai_api_key" not in st.session_state:
+    st.session_state.openai_api_key = ""
+
+openai.api_key = st.session_state.openai_api_key
+
+if "text_error" not in st.session_state:
+    st.session_state.text_error = None
+
+if "text" not in st.session_state:
+    st.session_state.text = None
+
+if "n_requests" not in st.session_state:
+    st.session_state.n_requests = 0
+
+with st.sidebar:
+    api_key_form = st.form(key="api_key_form")
+    openai_api_key = api_key_form.text_input("OpenAI API Key", key="chatbot_api_key", type="password")
+    api_key_form_submitted = api_key_form.form_submit_button("Submit")
+
+    if api_key_form_submitted:
+        st.session_state.openai_api_key = openai_api_key
+        openai.api_key = st.session_state.openai_api_key
+        st.success("Your OpenAI API key was saved successfully!")
 # Function to generate a name using OpenAI API
 def generate_name(gender, characteristic, first_letter, language, api_key):
     # Set OpenAI API key
-    openai.api_key = api_key
 
     # Call OpenAI API to generate a name based on the provided parameters
-    response = openai.Completion.create(
+    response = openai.chat.completions.create(
         engine="text-davinci-002",  # Use the appropriate engine
         prompt=f"Generate a {gender.lower()} name that is {characteristic.lower()} and starts with {first_letter.lower()} in {language.lower()}",
         max_tokens=50  # Adjust as needed
@@ -16,23 +42,21 @@ def generate_name(gender, characteristic, first_letter, language, api_key):
     generated_name = response.choices[0].text.strip()
     return generated_name
 
-# Streamlit app
-def main():
-    st.title("Name Generator App")
 
-    # User input
-    gender = st.selectbox("Select gender", ["Male", "Female"])
-    characteristic = st.text_input("Enter a characteristic (e.g., Brave, Intelligent)")
-    first_letter = st.text_input("Enter the first letter of the name")
-    language = st.selectbox("Select language", ["English", "Italian", "Spanish"])
+st.title("Name Generator App")
 
-    # Slider for API key
-    api_key = st.text_input("Enter your OpenAI API key", type="password")
-    
-    # Generate and display the name
-    if st.button("Generate Name"):
-        generated_name = generate_name(gender, characteristic, first_letter, language, api_key)
-        st.success(f"The generated name is: {generated_name}")
+# User input
+gender = st.selectbox("Select gender", ["Male", "Female"])
+characteristic = st.text_input("Enter a characteristic (e.g., Brave, Intelligent)")
+first_letter = st.text_input("Enter the first letter of the name")
+language = st.selectbox("Select language", ["English", "Italian", "Spanish"])
 
-if __name__ == "__main__":
-    main()
+# Slider for API key
+api_key = st.text_input("Enter your OpenAI API key", type="password")
+
+# Generate and display the name
+if st.button("Generate Name"):
+    generated_name = generate_name(gender, characteristic, first_letter, language, api_key)
+    st.success(f"The generated name is: {generated_name}")
+
+
