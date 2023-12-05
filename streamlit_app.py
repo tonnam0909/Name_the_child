@@ -1,5 +1,5 @@
 import streamlit as st
-
+import openai
 
 st.cache_data.clear()
 
@@ -41,8 +41,8 @@ def generate_name_recommendation(gender, characteristics, first_letter, language
         top_p=0.7,
         max_tokens=450,
         messages=[
-            {"role": "system", "content": "You are a flowers recommendation bot. You will help users find the best flowers for their important person."},
-            {"role": "user", "content": f"You will help users find the best flowers and make notes from the context:{prompt}."},
+            {"role": "system", "content": "You are a name recommendation bot. You will help users find the most suitable name for the user from the information given by the user."},
+            {"role": "user", "content": f"You will help users find the best names that is the most suitable from the given information:{prompt}."},
         ]
     )
     
