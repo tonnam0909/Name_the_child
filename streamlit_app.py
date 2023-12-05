@@ -25,8 +25,10 @@ def main():
     characteristic = st.text_input("Enter a characteristic (e.g., Brave, Intelligent)")
     first_letter = st.text_input("Enter the first letter of the name")
     language = st.selectbox("Select language", ["English", "Italian", "Spanish"])
-    api_key = st.text_input("Enter your OpenAI API key", type="password")  # Use password input for API key
 
+    # Slider for API key
+    api_key = st.text_input("Enter your OpenAI API key", type="password")
+    
     # Generate and display the name
     if st.button("Generate Name"):
         generated_name = generate_name(gender, characteristic, first_letter, language, api_key)
