@@ -64,7 +64,7 @@ st.header(':yellow[And let the child be named!]:sunglasses:', divider='rainbow')
 
 # Generate recommendation
 if st.button("Recommend me!"):
-    with st.spinner('Wait for it...'):
+    with st.spinner('**🍒Cherry-picking the best names for you🍒...**'):
         if gender and characteristics and first_letter and language:
             recommendation = generate_name_recommendation(
                 gender, characteristics, first_letter, language
