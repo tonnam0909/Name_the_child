@@ -66,6 +66,6 @@ if st.button("Recommend me!"):
             gender, characteristics, first_letter, language
         )
         st.write(recommendation)
-        st.image('https://i.imgflip.com/14icqe.jpg?a471960')
+        st.image('https://i.imgflip.com/14icqe.jpg?a471960', 500)
     else:
         st.warning("Please fill in all fields.")
