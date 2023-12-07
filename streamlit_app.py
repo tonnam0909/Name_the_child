@@ -50,7 +50,7 @@ def generate_name_recommendation(gender, characteristics, first_letter, language
 
 st.title('Name your child!🧒')
 #st.markdown("<div style='text-align: center; color: pink;'><h2 style='font-size: 3rem;'>Name your child🧒</h2></div>", unsafe_allow_html=True)
-st.header('_Welcome!_❤️', divider='rainbow')
+st.header(':rainbow[***Welcome!_❤️***]')
 st.markdown('''Are you having trouble :red[naming] your child? Do you find it difficult to find a name that is :blue[unique] and :green[meaningful]? :rainbow[Don't worry!] We are here to help you!Just fill in the form below and we will generate a list of names for you!''')
 # Uncomment the following lines to enable the API key input form
 
@@ -60,7 +60,7 @@ characteristics = st.text_input("Enter characteristics (e.g., Brave, Intelligent
 first_letter = st.text_input("Enter the first letter of the name")
 language = st.selectbox("Select language", ["English", "Italian", "Spanish"])
 
-st.header(':yellow[And let the child be named!] :sunglasses:')
+st.header(':yellow[And let the child be named!]:sunglasses:', divider='rainbow')
 
 # Generate recommendation
 if st.button("Recommend me!"):
