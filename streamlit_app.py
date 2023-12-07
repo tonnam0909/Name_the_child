@@ -66,6 +66,6 @@ if st.button("Recommend me!"):
             gender, characteristics, first_letter, language
         )
         st.success(recommendation)
-        st.image('th.jpg')
+        st.image('https://media.wired.com/photos/5e3246cd56bcac00087f0a1e/master/w_1920,c_limit/Culture-Success-Meme-Kid.jpg')
     else:
         st.warning("Please fill in all fields.")
