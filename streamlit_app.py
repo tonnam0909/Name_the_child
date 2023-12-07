@@ -65,9 +65,9 @@ if st.button("Recommend me!"):
         recommendation = generate_name_recommendation(
             gender, characteristics, first_letter, language
         )
-        st.write(recommendation)
+        st.success(recommendation)
         left_co, cent_co,last_co = st.columns(3)
         with cent_co:
-            st.image('https://i.imgflip.com/14icqe.jpg?a471960', caption=None, width=200)
+            st.image('https://i.imgflip.com/14icqe.jpg?a471960', caption=None, width=290)
     else:
         st.warning("Please fill in all fields.")
