@@ -1,12 +1,12 @@
 import streamlit as st
 import openai
-import pandas as pd
+
 st.cache_data.clear()
 
 if "openai_api_key" not in st.session_state:
     st.session_state.openai_api_key = ""
 
-#openai.api_key = st.session_state.openai_api_key
+openai.api_key = st.session_state.openai_api_key
 
 if "text_error" not in st.session_state:
     st.session_state.text_error = None
@@ -32,7 +32,7 @@ with st.sidebar:
 
 def generate_name_recommendation(gender, characteristics, first_letter, language):
     # Customize the prompt based on your requirements
-    prompt = f"Generate five {gender} names that mean {characteristics} that start with {first_letter} in {language} and tell me the origin of each name."
+    prompt = f"Generate five {gender} names that means {characteristics} that starts with {first_letter} in {language} and tell me the origin of each name."
 
     # Call OpenAI API for recommendation
     response = openai.chat.completions.create(
@@ -41,23 +41,24 @@ def generate_name_recommendation(gender, characteristics, first_letter, language
         top_p=0.7,
         max_tokens=450,
         messages=[
-            {"role": "system", "content": "Act as a name counselor. You will help users find the most suitable name for the user from the information given by the user. Put the name, origin, meaning in a pandas table."},
-            {"role": "user", "content": f"You will help users find the best names that is the most suitable from the given information:{prompt}."},
+            {"role": "system", "content": "You are a flowers recommendation bot. You will help users find the best flowers for their important person."},
+            {"role": "user", "content": f"You will help users find the best flowers and make notes from the context:{prompt}."},
         ]
     )
     
     return response.choices[0].message.content
 
-st.markdown("<div style='text-align: center;'><h2 style='font-size: 2rem;'>NAME YOUR CHILD!!!</h2></div>", unsafe_allow_html=True)
+#st.title("🌼Flower For Your Important Person🌼")
+st.markdown("<h2 style = 'font-size: 1.8rem'>Name Your Child Import</h2>",unsafe_allow_html=True)
 
 # Uncomment the following lines to enable the API key input form
 
 
 # User input
-gender = st.selectbox("Select gender", ["Male", "Female"])
-characteristics = st.text_input("Enter characteristics (e.g., Brave, Intelligent)")
-first_letter = st.text_input("Enter the first letter of the name")
-language = st.selectbox("Select language", ["English", "Italian", "Spanish"])
+gender = st.text_input("Gender:")
+characteristics = st.text_input("Characteristics:")
+first_letter = st.text_input("First Letter Of The Name:")
+language = st.text_input("The Language Of Origin Of The Name:")
 
 # Generate recommendation
 if st.button("Generate Name"):
@@ -65,6 +66,6 @@ if st.button("Generate Name"):
         recommendation = generate_name_recommendation(
             gender, characteristics, first_letter, language
         )
-        st.success(f"Recommended Names: {recommendation}")
+        st.success(f"Recommended Name: {recommendation}")
     else:
         st.warning("Please fill in all fields.")
