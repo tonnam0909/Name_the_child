@@ -48,8 +48,10 @@ def generate_name_recommendation(gender, characteristics, first_letter, language
     
     return response.choices[0].message.content
 
-st.markdown("<div style='text-align: center; color: pink;'><h2 style='font-size: 2rem;'>NAME YOUR CHILD!!!</h2></div>", unsafe_allow_html=True)
-
+st.markdown("<div style='text-align: center; color: pink;'><h2 style='font-size: 2rem;'>Name your child🧒</h2></div>", unsafe_allow_html=True)
+st.markdown('''
+    :red[Streamlit] :orange[can] :green[write] :blue[text] :violet[in]
+    :gray[pretty] :rainbow[colors].''')
 # Uncomment the following lines to enable the API key input form
 
 
@@ -60,7 +62,7 @@ first_letter = st.text_input("Enter the first letter of the name")
 language = st.selectbox("Select language", ["English", "Italian", "Spanish"])
 
 # Generate recommendation
-if st.button("Generate Name"):
+if st.button("Recommend me!"):
     if gender and characteristics and first_letter and language:
         recommendation = generate_name_recommendation(
             gender, characteristics, first_letter, language
