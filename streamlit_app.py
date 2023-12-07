@@ -64,13 +64,14 @@ st.header(':yellow[And let the child be named!]:sunglasses:', divider='rainbow')
 
 # Generate recommendation
 if st.button("Recommend me!"):
-    if gender and characteristics and first_letter and language:
-        recommendation = generate_name_recommendation(
-            gender, characteristics, first_letter, language
-        )
-        st.success(recommendation)
-        left_co, cent_co,last_co = st.columns(3)
-        with cent_co:
-            st.image('https://i.imgflip.com/14icqe.jpg?a471960', caption=None, width=290)
-    else:
-        st.warning("Please fill in all fields.")
+    with st.spinner('Wait for it...'):
+        if gender and characteristics and first_letter and language:
+            recommendation = generate_name_recommendation(
+                gender, characteristics, first_letter, language
+            )
+            st.success(recommendation)
+            left_co, cent_co,last_co = st.columns(3)
+            with cent_co:
+                st.image('https://i.imgflip.com/14icqe.jpg?a471960', caption=None, width=290)
+        else:
+            st.warning("Please fill in all fields.")
