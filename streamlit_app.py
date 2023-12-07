@@ -32,7 +32,7 @@ with st.sidebar:
 
 def generate_name_recommendation(gender, characteristics, first_letter, language):
     # Customize the prompt based on your requirements
-    prompt = f"Generate five {gender} names that mean {characteristics} that start with {first_letter} in {language} and tell me the origin of each name."
+    prompt = f"Provide five {gender} names that mean {characteristics} that start with {first_letter} in {language} and tell me the origin of each name."
 
     # Call OpenAI API for recommendation
     response = openai.chat.completions.create(
