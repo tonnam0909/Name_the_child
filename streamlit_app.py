@@ -48,9 +48,9 @@ def generate_name_recommendation(gender, characteristics, first_letter, language
     
     return response.choices[0].message.content
 
-st.title('Name your child!🧒', divider='rainbow')
+st.title('Name your child!🧒')
 #st.markdown("<div style='text-align: center; color: pink;'><h2 style='font-size: 3rem;'>Name your child🧒</h2></div>", unsafe_allow_html=True)
-st.header('_Welcome!_❤️')
+st.header('_Welcome!_❤️', divider='rainbow')
 st.markdown('''Are you having trouble :red[naming] your child? Do you find it difficult to find a name that is :blue[unique] and :green[meaningful]? :rainbow[Don't worry!] We are here to help you!Just fill in the form below and we will generate a list of names for you!''')
 # Uncomment the following lines to enable the API key input form
 
