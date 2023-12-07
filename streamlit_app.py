@@ -41,24 +41,26 @@ def generate_name_recommendation(gender, characteristics, first_letter, language
         top_p=0.7,
         max_tokens=450,
         messages=[
-            {"role": "system", "content": "Act as a name counselor. You will help users find the most suitable name for the user from the information given by the user. Put the name, origin, meaning in a pandas table and display the table in the center."},
+            {"role": "system", "content": "Act as a name counselor. You will help users find the most suitable name for the user from the information given by the user. Put the name and meaning in a pandas table."},
             {"role": "user", "content": f"You will help users find the best names that is the most suitable from the given information:{prompt}."},
         ]
     )
     
     return response.choices[0].message.content
 
-st.title(':rainbow[Name your child!🧒]')
+st.title('Name your child!🧒', divider='rainbow')
 #st.markdown("<div style='text-align: center; color: pink;'><h2 style='font-size: 3rem;'>Name your child🧒</h2></div>", unsafe_allow_html=True)
-st.markdown(''':rainbow[Welcome!] Are you having trouble :red[naming] your child? Do you find it difficult to find a name that is :blue[unique] and :green[meaningful]? :rainbow[Don't worry!] We are here to help you!Just fill in the form below and we will generate a list of names for you!''')
+st.header('_Welcome!_❤️')
+st.markdown('''Are you having trouble :red[naming] your child? Do you find it difficult to find a name that is :blue[unique] and :green[meaningful]? :rainbow[Don't worry!] We are here to help you!Just fill in the form below and we will generate a list of names for you!''')
 # Uncomment the following lines to enable the API key input form
-
 
 # User input
 gender = st.selectbox("Select gender", ["Male", "Female"])
 characteristics = st.text_input("Enter characteristics (e.g., Brave, Intelligent)")
 first_letter = st.text_input("Enter the first letter of the name")
 language = st.selectbox("Select language", ["English", "Italian", "Spanish"])
+
+st.header(':yellow[And let the child be named!] :sunglasses:')
 
 # Generate recommendation
 if st.button("Recommend me!"):
