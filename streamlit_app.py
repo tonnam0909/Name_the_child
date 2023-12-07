@@ -49,7 +49,7 @@ def generate_name_recommendation(gender, characteristics, first_letter, language
     return response.choices[0].message.content
 
 st.title(":pink[Name your child!]")
-st.markdown("<div style='text-align: center;'><h2 style='font-size: 2rem;'>NAME YOUR CHILD!!!</h2></div>", unsafe_allow_html=True)
+#st.markdown("<div style='text-align: center;'><h2 style='font-size: 2rem;'>NAME YOUR CHILD!!!</h2></div>", unsafe_allow_html=True)
 
 # Uncomment the following lines to enable the API key input form
 
