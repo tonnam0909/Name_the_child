@@ -32,7 +32,7 @@ with st.sidebar:
 
 def generate_name_recommendation(gender, characteristics, first_letter, language):
     # Customize the prompt based on your requirements
-    prompt = f"Provide five {gender} names that mean {characteristics} that start with {first_letter} in {language} and tell me the origin of each name."
+    prompt = f"Provide five {gender} names that mean {characteristics} that start with {first_letter} in {language} and tell me the origin and meaning of each name."
 
     # Call OpenAI API for recommendation
     response = openai.chat.completions.create(
@@ -41,7 +41,7 @@ def generate_name_recommendation(gender, characteristics, first_letter, language
         top_p=0.7,
         max_tokens=450,
         messages=[
-            {"role": "system", "content": "Act as a name counselor. You will help users find the most suitable name for the user from the information given by the user. Put the name and meaning in a pandas table."},
+            {"role": "system", "content": "Act as a name counselor. You will help users find the most suitable name for the user from the information given by the user. Put the name, meaning in a pandas table."},
             {"role": "user", "content": f"You will help users find the best names that is the most suitable from the given information:{prompt}."},
         ]
     )
@@ -51,7 +51,7 @@ def generate_name_recommendation(gender, characteristics, first_letter, language
 st.title('Name your child!🧒')
 #st.markdown("<div style='text-align: center; color: pink;'><h2 style='font-size: 3rem;'>Name your child🧒</h2></div>", unsafe_allow_html=True)
 st.header(':rainbow[***Welcome!_❤️***]')
-st.markdown('''Hi! I'm **NYC**:sunglasses:, your personal naming service! Are you having trouble :red[**naming**] your child? Do you find it difficult to find a name that is :blue[**unique**] and :green[**meaningful**]? :rainbow[Don't worry!] I'm here to help you! Just fill in the form below and I will give you a list of names!''')
+st.markdown('''Hi! I'm **Nyc**:sunglasses:, your personal naming service! Are you having trouble :red[**naming**] your child? Do you find it difficult to find a name that is :blue[**unique**] and :green[**meaningful**]? :rainbow[Don't worry!] I'm here to help you! Just fill in the form below and I will give you a list of names!''')
 # Uncomment the following lines to enable the API key input form
 
 # User input
