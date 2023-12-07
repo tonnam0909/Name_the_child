@@ -65,7 +65,8 @@ if st.button("Recommend me!"):
         recommendation = generate_name_recommendation(
             gender, characteristics, first_letter, language
         )
-        st.success(f"Recommended Names: {recommendation}")
-        st.image('succes kid.png')
+        st.dataframe(recommendation)
+        #st.success(f"Recommended Names: {recommendation}")
+        st.image('th.jpg')
     else:
         st.warning("Please fill in all fields.")
