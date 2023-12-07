@@ -6,7 +6,7 @@ st.cache_data.clear()
 if "openai_api_key" not in st.session_state:
     st.session_state.openai_api_key = ""
 
-#openai.api_key = st.session_state.openai_api_key
+openai.api_key = st.session_state.openai_api_key
 
 if "text_error" not in st.session_state:
     st.session_state.text_error = None
@@ -66,16 +66,6 @@ if st.button("Recommend me!"):
             gender, characteristics, first_letter, language
         )
         st.success(recommendation)
-        lines = recommendation.split('\n')
-
-        # Create a dataframe for better formatting
-        df = pd.DataFrame({"Recommendation": lines})
-
-        # Convert the dataframe to HTML and remove the index column
-        html_table = df.to_html(index=False, escape=False)
-
-        # Display the HTML table
-        st.write(html_table, unsafe_allow_html=True)
         left_co, cent_co,last_co = st.columns(3)
         with cent_co:
             st.image('https://i.imgflip.com/14icqe.jpg?a471960', caption=None, width=290)
